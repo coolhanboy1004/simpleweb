@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Group</th>
+                <th>Nickname</th>
+                <th>Password</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="users-table">
+            <!-- Users data will be loaded here -->
+        </tbody>
+    </table>
+
+    <script>
+     // Load user data
+    function loadUsers() {
+        fetch('/users').then(response => response.json()).then(users => {
+            const usersTable = document.getElementById('users-table');
+            usersTable.innerHTML = ''; // Clear existing data
+            users.forEach(user => {
+                const row = usersTable.insertRow(-1);
+                row.innerHTML = `
+                    <td>${user.number}</td>
+                    <td>${user.group}</td>
+                    <td>${user.nickname}</td>
+                    <td>${user.password}</td>
+                    <td>${user.age}</td>
+                    <td>
+                        <button onclick="editUser(${user.number})">Edit</button>
+                    </td>
+                `;
+            });
+        });
+    }
+
+    function editUser(number) {
+        const usersTable = document.getElementById('users-table');
+        const rows = Array.from(usersTable.rows);
+        rows.forEach(row => {
+            const currentNumber = parseInt(row.cells[0].textContent.trim());
+            if (currentNumber === number) {
+                const group = row.cells[1].textContent.trim();
+                const nickname = row.cells[2].textContent.trim();
+                const password = row.cells[3].textContent.trim();
+                const age = row.cells[4].textContent.trim();
+                row.innerHTML = `
+                    <form action="#" onsubmit="return updateUser(event, ${number})">
+                        <td>${number}</td>
+                        <td><input type="text" value="${group}" name="group"></td>
+                        <td><input type="text" value="${nickname}" name="nickname"></td>
+                        <td><input type="text" value="${password}" name="password"></td>
+                        <td><input type="number" value="${age}" name="age"></td>
+                        <td><button type="submit">Save</button></td>
+                    </form>
+                `;
+            }
+        });
+    }
+    
+    function updateUser(event, number) {
+        console.log('hi')
+        event.preventDefault();
+        const form = event.target;
+        const data = {
+            number: number,
+            group: form.group.value,
+            nickname: form.nickname.value,
+            password: form.password.value,
+            age: form.age.value
+        };
+    
+        fetch('/update-user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                alert('User updated successfully');
+            } else {
+                alert('Failed to update user: ' + data.message);
+            }
+            loadUsers();  // Refresh user list
+        }).catch(error => {
+            console.error('Error updating user:', error);
+            alert('Error updating user: ' + error.message);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadUsers);
+    </script>
+</body>
+</html>

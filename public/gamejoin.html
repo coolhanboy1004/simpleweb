@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+    <h1>User Registration</h1>
+    <form action="/register" method="post">
+        <label for="group">Group:</label>
+        <select id="group" name="group">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+        </select><br>
+        <label for="nickname">Nickname:</label>
+        <input id="nickname" name="nickname" required type="text"><br>
+        <label for="password">Password:</label>
+        <input id="password" name="password" required type="password"><br>
+        <button type="submit">가입 및 로그인</button>
+    </form>
+</body>
+</html>

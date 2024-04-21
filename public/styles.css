@@ -1,0 +1,52 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+input[type="text"], input[type="password"], input[type="number"], button {
+    width: 90%;
+    padding: 12px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+@media (max-width: 768px) {
+    input[type="text"], input[type="password"], input[type="number"], button {
+        width: 100%; /* 입력 필드와 버튼을 화면 전체 폭으로 확장 */
+        margin: 10px 0;
+        padding: 15px; /* 터치하기 쉽도록 패딩을 늘림 */
+    }
+
+    button {
+        font-size: 16px; /* 버튼의 폰트 크기 증가 */
+    }
+
+    table, th, td {
+        font-size: 14px; /* 테이블의 폰트 크기를 조정 */
+    }
+}

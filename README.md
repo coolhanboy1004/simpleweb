@@ -22,6 +22,6 @@ admin.html:
 간단한 설정과 실행 방법으로 빠르게 웹 서비스를 시작할 수 있으며, 1회성 사용또는 스터디용 프로젝트로 적합합니다. 
 보안적인 부분은 구현되지 않았습니다. 
 
-sample 사이트 주소 http://aiwd.kro.kr:8080/gamejoin.html 기존 데이터 삭제완료 
+sample 사이트 주소 http://aiwd.kro.kr:8080/gamejoin.html 기존 데이터 삭제완료
  
 

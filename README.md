@@ -23,5 +23,6 @@ admin.html:
 보안적인 부분은 구현되지 않았습니다. 
 
 sample 사이트 주소 http://aiwd.kro.kr:8080/gamejoin.html 기존 데이터 삭제됨
- 
+
+자유롭게 사용가능한 코드입니다. 
 
